@@ -12,6 +12,35 @@ import javax.inject.Inject;
 import java.util.concurrent.CompletionStage;
 import java.util.function.Function;
 
+/**
+ * This filter enables some default metrics for your play application
+ * <p>
+ * Usage:
+ * <br>You need to add the PrometheusFilter in you Filter class:
+ * <pre><code>
+ * {@literal @}Singleton
+ * public class Filters extends DefaultHttpFilters {
+ *
+ *    {@literal @}Inject
+ *     public Filters(LoggingFilter logging, PrometheusFilter prometheus) {
+ *       super(logging, prometheus);
+ *     }
+ *  }
+ * </code></pre>
+ * <p>
+ * This filter will load the following collectors:
+ * <ol>
+ * <li>http_requests_total (counter) - labelled by:</li>
+ *  <ul>
+ *      <li>method (get/post/etc)</li>
+ *      <li>status code (200, 400, ...)</li>
+ *  </ul>
+ * <li>http_request_duration_seconds (histogram)</li>
+ * <li>http_in_flight_requests_total (gauge)</li>
+ * </ol>
+ * 
+ * @author Daniel Ochoa
+ */
 public class PrometheusFilter extends Filter {
 
     private static Counter requestsTotal = Counter.build()

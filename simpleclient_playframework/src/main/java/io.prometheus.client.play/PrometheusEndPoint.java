@@ -15,6 +15,19 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Enable an endpoint that exposes Prometheus metrics from its default collector.
+ * <p>
+ * Usage:
+ * <br>You need to make visible this controller to the endpoint /metrics in your routes file, e.g.:
+ * <pre>
+ * GET /metrics        com.telefonica.prometheus.PrometheusController.getMetrics()
+ * </pre>
+ * <p>
+ * This controller will start some collectors for garbage collection, memory pools, JMX, classloading, and thread counts.
+ *
+ * @author Daniel Ochoa
+ */
 public class PrometheusEndPoint extends Controller {
 
     private final CollectorRegistry collectorRegistry;
