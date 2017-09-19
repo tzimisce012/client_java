@@ -38,7 +38,7 @@ import java.util.function.Function;
  * <li>http_request_duration_seconds (histogram)</li>
  * <li>http_in_flight_requests_total (gauge)</li>
  * </ol>
- * 
+ *
  * @author Daniel Ochoa
  */
 public class PrometheusFilter extends Filter {
